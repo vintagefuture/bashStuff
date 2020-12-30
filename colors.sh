@@ -9,3 +9,8 @@ PURPLE='\e[0;35m'
 CYAN='\e[0;36m'   
 WHITE='\e[0;37m'  
 RESET='\e[0m'
+
+echo -e "${RED}Hello World!${RESET}"
+echo -e "${GREEN}Hello World!${RESET}"
+echo -e "${YELLOW}${uline}Hello World!${RESET}"
+echo -e "${BLUE}Hello World!${RESET}"
