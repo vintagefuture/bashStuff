@@ -1,3 +1,5 @@
+# from https://techstop.github.io/bash-script-colors/
+
 #!/bin/bash
 
 # Ansi color code variables
