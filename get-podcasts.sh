@@ -2,7 +2,9 @@
 
 RSS_FEED_URL='https://www.spreaker.com/show/5773405/episodes/feed'
 
-message="<!here> New episode of Il mondo is available" 
+PODCAST_NAME="Il Mondo"
+
+message="<!here> New episode of ${PODCAST_NAME} is available" 
 
 slack_webhook_url=""
 
@@ -10,15 +12,11 @@ slack_channel="server-notifications"
 
 cd /home/nedo/podcasts
 
-rm -f ilmondo.mp3
+rm -f ${PODCAST_NAME}.mp3
 
-wget -q -O ilmondo_48k.mp3 $(wget -q -O - $RSS_FEED_URL | grep -Eo '<enclosure url="([^"]+)"' | awk -F'"' '{print $2}' | head -1)
+wget -q -O ${PODCAST_NAME}.mp3 $(wget -q -O - $RSS_FEED_URL | grep -Eo '<enclosure url="([^"]+)"' | awk -F'"' '{print $2}' | head -1)
 
-sox ilmondo_48k.mp3 -r 44100 ilmondo.mp3
-
-rm ilmondo_48k.mp3
-
-echo "[$(date +%Y-%m-%d\ %H:%M:%S)] download completed"
+echo "[$(date +%Y-%m-%d\ %H:%M:%S)] ${PODCAST_NAME}: download completed"
 
 curl -X POST -H 'Content-type: application/json' \
     --data "{\"text\": \"${message}\", \"channel\": \"${slack_channel}\"}" \
