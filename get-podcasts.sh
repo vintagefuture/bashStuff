@@ -14,7 +14,7 @@ cd /home/nedo/podcasts
 
 rm -f ${PODCAST_NAME}.mp3
 
-wget -q -O ${PODCAST_NAME}.mp3 $(wget -q -O - $RSS_FEED_URL | grep -Eo '<enclosure url="([^"]+)"' | awk -F'"' '{print $2}' | head -1)
+wget -q -O "${PODCAST_NAME}.mp3" $(wget -q -O - $RSS_FEED_URL | grep -Eo '<enclosure url="([^"]+)"' | awk -F'"' '{print $2}' | head -1)
 
 echo "[$(date +%Y-%m-%d\ %H:%M:%S)] ${PODCAST_NAME}: download completed"
 
